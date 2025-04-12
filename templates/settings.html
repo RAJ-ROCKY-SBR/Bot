@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% block title %}Settings{% endblock %}
+{% block content %}
+  <h2>Account Settings</h2>
+  <form method="POST" action="#">
+    Username: <input type="text" value="{{ user.username }}"><br>
+    Email: <input type="email" value="{{ user.email }}"><br>
+    <button disabled>Save Changes (demo)</button>
+  </form>
+  <h3>Blocked Users</h3>
+  <ul>
+    {% for u in blocked_users %}
+      <li>{{ u }}
+        <form method="POST" action="/unblock" style="display:inline;">
+          <input type="hidden" name="username" value="{{ u }}">
+          <button type="submit">Unblock</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
